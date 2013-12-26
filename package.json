@@ -1,0 +1,42 @@
+{
+   "name":"gulp-open",
+   "description":"Open files and URLs with gulp",
+   "version":"0.0.1",
+   "homepage":"http://github.com/stevelacy/gulp-open",
+   "repository": {
+      "type": "git",
+      "url": "http://github.com/stevelacy/gulp-open.git"
+   },
+   "author":"Steve Lacy me@slacy.me (http://slacy.me/)",
+   "main":"./index.js",
+   
+   "dependencies":{
+      "gulp":"*",
+      "open":"*",
+      "event-stream":"*"
+   },
+   "devDependencies":{
+      "mocha":"*",
+      "should":"*"
+   },
+   "scripts":{
+      "test":"mocha"
+   },
+   "engines":{
+      "node":">= 0.8.0"
+   },
+   "keywords": [
+    "gulp",
+    "open",
+    "node-open",
+    "exec-plugin",
+    "gulpplugin",
+    "gulp-plugin"
+   ],
+   "licenses":[
+      {
+         "type":"MIT",
+         "url":"http://github.com/stevelacy/gulp-open/raw/master/LICENSE"
+      }
+   ]
+}
