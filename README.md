@@ -24,35 +24,34 @@
 var gulp = require("gulp");
 var open = require("gulp-open");
 
+
+
+// Default usage:
+// Open one file with default application
+gulp.task("open", function(){
+  gulp.src("./index.html")
+  .pipe(open("<%file.path%>")); 
+});
+
+
+// Open all .html files in a folder with a defined application
+gulp.task("open", function(){
+  gulp.src("./htdocs/*.html")
+  .pipe(open("<%file.path%>","google-chrome"));
+});
+
+
 // Open an URL:
 
 gulp.task("open", function(){
   var options = {
-    url: "http://google.com",
+    url: "http://localhost:3000",
     app: "google-chrome"
   };
   gulp.src("./")
   .pipe(open(options));
 });
 
-// Open a local file:
-// If app is not declared the default webbrowser will be used
-
-gulp.task("open", function(){
-  var options = {
-    url: "./examples/index.html"
-  };
-  gulp.src("./")
-  .pipe(open(options));
-});
-
-
-// Short version:
-
-gulp.task("open", function(){
-  gulp.src("./")
-  .pipe(open({url:"http://slacy.me"));
-});
 
 
 
@@ -68,16 +67,18 @@ gulp.task("default", function(){
 
 ##Options
 
-`.pipe(open(Object Options))`
+`.pipe(open(Template, Application))`
 
-###url, file (Required)
-`String, website or local URL`
+###Template (Required)
+`String, file.path or local URL`
 
 ```javascript
-url: "http://google.com"
 
-///
-file: "/var/www/htdocs/index.html"
+<%file.path%>
+
+// Example:
+.pipe(open("<%file.path%>"));
+
 ```
 
 
@@ -87,11 +88,13 @@ file: "/var/www/htdocs/index.html"
 NOTE: If the app is not defined, the Default application will be used for the filetype/URL.
 
 ```javascript
-app: "google-chrome"
 
-///
+"google-chrome"
 
-app: "sublime"
+// Example:
+
+.pipe(open("<%file.path%>", "google-chrome"));
+
 ```
 
 

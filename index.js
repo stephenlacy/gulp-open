@@ -1,20 +1,22 @@
 var open = require("open");
 var es = require('event-stream');
 
-module.exports = function(options) {
-  if(!options.url){
-    throw new Error('URL is blank');
-  }
+module.exports = function(options, app) {
 
   var url = options.url || options.file;
 
   return es.map(function (file, cb){
-    if(options.app){
-      open(url, options.app);
+
+    var path = file.path;
+
+    // Check if URL
+    if (options.url || options.file) {
+      open(url, options.app||app);
       cb(null, true);
       return true;
     }
-    open(url);
+    // Run normally
+    open(path, app);
     cb(null, true);
   });
 };
