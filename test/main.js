@@ -5,10 +5,10 @@ require('mocha');
 describe('gulp-open', function() {
 
   it('should open a stream of files with the default application', function(done) {
-    gulpopen("<%file.path%>", done());
+    gulpopen("<%= file.path%>", done());
   });
   it('should open a stream of files with a defined application', function(done) {
-    gulpopen("<%file.path%>","google-chrome", done());
+    gulpopen("<%= file.path%>","google-chrome", done());
   });
   it('should open a website in a browser', function(done) {
     gulpopen({url:"http://localhost:3000"}, done());

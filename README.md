@@ -16,6 +16,9 @@
 <td>Node Version</td>
 <td>>= 0.8</td>
 </tr>
+<td>Gulp Version</td>
+<td>3.x</td>
+</tr>
 </table>
 
 ## Usage
@@ -28,28 +31,39 @@ var open = require("gulp-open");
 
 // Default usage:
 // Open one file with default application
-gulp.task("open", function(){
+
+gulp.task("default", function(){
   gulp.src("./index.html")
   .pipe(open("<%file.path%>")); 
 });
 
 
 // Open all .html files in a folder with a defined application
+
 gulp.task("open", function(){
   gulp.src("./htdocs/*.html")
-  .pipe(open("<%file.path%>","google-chrome"));
+  .pipe(open("<%file.path%>",{app:"google-chrome"}));
+});
+
+
+// Simple usage, no options.
+// This will use the default applications
+
+gulp.task("simple", function(){
+  gulp.src("./index.html")
+  .pipe(open());
 });
 
 
 // Open an URL:
 
-gulp.task("open", function(){
+gulp.task("url", function(){
   var options = {
     url: "http://localhost:3000",
-    app: "google-chrome"
+    app: "firefox"
   };
   gulp.src("./")
-  .pipe(open(options));
+  .pipe(open("", options));
 });
 
 
@@ -66,11 +80,12 @@ gulp.task("default", function(){
 
 
 ##Options
+`Object, {app, url}`
 
-`.pipe(open(Template, Application))`
+`.pipe(open(Template, options))`
 
-###Template (Required)
-`String, file.path or local URL`
+###Template (Required to use options)
+`String, file.path`
 
 ```javascript
 
@@ -79,13 +94,15 @@ gulp.task("default", function(){
 // Example:
 .pipe(open("<%file.path%>"));
 
+.pipe(open("file:// <%= file.path%>", {app:"google-chrome"}));
+
 ```
 
 
-###app
+###Options.app
 `String, local application`
 
-NOTE: If the app is not defined, the Default application will be used for the filetype/URL.
+NOTE: If the ``options.app`` is not defined, the Default application will be used for the filetype/URL.
 
 ```javascript
 
@@ -93,12 +110,23 @@ NOTE: If the app is not defined, the Default application will be used for the fi
 
 // Example:
 
-.pipe(open("<%file.path%>", "google-chrome"));
+.pipe(open("file://<%file.path%>", {app:"google-chrome"}));
 
 ```
+###Options.url
+`String, web url`
+
+```javascript
+
+"http://localhost:3000"
+
+// Example:
+
+.pipe(open("", {app: "google-chrome", url: "http://localhost:3000"}));
 
 
-##[Grunt Example](https://github.com/stevelacy/gulp-open/tree/master/examples)
+
+##[Gulp Example](https://github.com/stevelacy/gulp-open/tree/master/examples)
 
 ## LICENSE
 

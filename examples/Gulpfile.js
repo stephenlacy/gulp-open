@@ -1,13 +1,35 @@
 var gulp = require("gulp");
 var open = require("../");
 
+gulp.task("simple", function(){
+  gulp.src("./index.html")
+  .pipe(open());
+});
+
+gulp.task("template", function(){
+  gulp.src("./second.html")
+  .pipe(open("<%file.path%>"));
+});
+
 gulp.task("open", function(){
+  var options = {
+    app: "google-chrome"
+  };
   gulp.src("./*.html")
-  .pipe(open("<%file.path%>","google-chrome"));
+  .pipe(open("file://<%= file.path %>", options));
 });
 
 
+gulp.task("url", function(){
+  var options = {
+    url: "http://localhost:3000",
+    app: "firefox"
+  };
+  gulp.src("./")
+  .pipe(open("", options));
+});
+
 
 gulp.task("default", function(){
-  gulp.run("open");
+  gulp.run("simple", "template", "open", "url");
 });

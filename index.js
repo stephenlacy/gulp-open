@@ -1,22 +1,23 @@
-var open = require("open");
+var open = require('open');
 var es = require('event-stream');
+var gutil = require('gulp-util');
 
-module.exports = function(options, app) {
-
-  var url = options.url || options.file;
+module.exports = function(src, opt) {
 
   return es.map(function (file, cb){
-
-    var path = file.path;
-
-    // Check if URL
-    if (options.url || options.file) {
-      open(url, options.app||app);
-      cb(null, true);
+    if (!opt) opt = {};
+    var cmd = gutil.template(src, {file:file});
+    
+    if (!opt.app) {
+      open(file.path);
+      return true;
+    }
+    if(opt.url){
+      open(opt.url, opt.app);
       return true;
     }
     // Run normally
-    open(path, app);
+    open(cmd, opt.app);
     cb(null, true);
   });
 };
