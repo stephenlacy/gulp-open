@@ -124,7 +124,7 @@ NOTE: If the ``options.app`` is not defined, the Default application will be use
 
 .pipe(open("", {app: "google-chrome", url: "http://localhost:3000"}));
 
-
+```
 
 ##[Gulp Example](https://github.com/stevelacy/gulp-open/tree/master/examples)
 
