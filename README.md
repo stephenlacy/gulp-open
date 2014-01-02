@@ -1,8 +1,8 @@
+#gulp-open
 [![Build Status](https://travis-ci.org/stevelacy/gulp-open.png?branch=master)](https://travis-ci.org/stevelacy/gulp-open)
-
 [![NPM version](https://badge.fury.io/js/gulp-open.png)](http://badge.fury.io/js/gulp-open)
 
-#gulp-open
+## Information
 
 <table>
 <tr> 
@@ -16,12 +16,17 @@
 <td>Node Version</td>
 <td>>= 0.8</td>
 </tr>
+<tr>
 <td>Gulp Version</td>
 <td>3.x</td>
 </tr>
 </table>
 
 ## Usage
+#### Install
+    npm install gulp-open --save
+
+## Example
 
 ```javascript
 var gulp = require("gulp");
@@ -76,7 +81,7 @@ gulp.task("default", function(){
   gulp.run("open");
 });
 ```
-
+####You can view more examples in the [example folder.](https://github.com/stevelacy/gulp-open/tree/master/examples)
 
 
 ##Options
@@ -126,7 +131,8 @@ NOTE: If the ``options.app`` is not defined, the Default application will be use
 
 ```
 
-##[Gulp Example](https://github.com/stevelacy/gulp-open/tree/master/examples)
+
+
 
 ## LICENSE
 
