@@ -11,14 +11,14 @@
    "main":"./index.js",
    
    "dependencies":{
-      "gulp":"*",
-      "open":"*",
-      "event-stream":"*",
-      "gulp-util":"*"
+      "open":"~0.0.4",
+      "event-stream":"~3.0.20",
+      "gulp-util":"~2.2.0"
    },
    "devDependencies":{
       "mocha":"*",
-      "should":"*"
+      "should":"*",
+      "gulp":"*"
    },
    "scripts":{
       "test":"mocha"
