@@ -1,6 +1,6 @@
 #gulp-open
-[![Build Status](https://travis-ci.org/stevelacy/gulp-open.png?branch=master)](https://travis-ci.org/stevelacy/gulp-open)
-[![NPM version](https://badge.fury.io/js/gulp-open.png)](http://badge.fury.io/js/gulp-open)
+[![Build Status](https://travis-ci.org/stevelacy/gulp-open.png?branch=master)](https://travis-ci.org/stevelacy/gulp-bump)
+[![NPM version](https://badge.fury.io/js/gulp-bump.png)](http://badge.fury.io/js/gulp-open)
 
 ## Information
 
@@ -67,10 +67,10 @@ gulp.task("url", function(){
     url: "http://localhost:3000",
     app: "firefox"
   };
-  gulp.src("./")
+  gulp.src("./index.html")
   .pipe(open("", options));
 });
-
+// A file must be specified as the src when running options.url or gulp will overlook the task.
 
 
 
@@ -111,7 +111,9 @@ NOTE: If the ``options.app`` is not defined, the Default application will be use
 
 ```javascript
 
-"google-chrome"
+"google-chrome" // Linux 
+"chrome" // Windows
+"firefox"
 
 // Example:
 
@@ -126,9 +128,9 @@ NOTE: If the ``options.app`` is not defined, the Default application will be use
 "http://localhost:3000"
 
 // Example:
-
+gulp.src("./stubFile.html")
 .pipe(open("", {app: "google-chrome", url: "http://localhost:3000"}));
-
+// A file must be specified as the src when running options.url or gulp will overlook the task.
 ```
 
 
