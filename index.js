@@ -10,7 +10,7 @@ module.exports = function(src, opt) {
     if (!opt) opt = {};
     var cmd = gutil.template(src, {file:file});
     
-    if (!opt.app) {
+    if (!opt.app && !opt.url) {
       open(file.path);
       return true;
     }

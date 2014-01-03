@@ -25,7 +25,7 @@ gulp.task("url", function(){
     url: "http://localhost:3000",
     app: "firefox"
   };
-  gulp.src("./stubFile.html") // An actual file must be specified or gulp will overlook the task.
+  gulp.src("./index.html") // An actual file must be specified or gulp will overlook the task.
   .pipe(open("", options));
 });
 

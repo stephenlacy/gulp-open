@@ -123,6 +123,11 @@ NOTE: If the ``options.app`` is not defined, the Default application will be use
 ###Options.url
 `String, web url`
 
+####Note for windows users: 
+URLs may not have a default application. If the task is running without opening in a browser try setting the options.app.
+Google Chrome: "chrome"
+Firefox: "firefox"
+
 ```javascript
 
 "http://localhost:3000"
@@ -130,7 +135,7 @@ NOTE: If the ``options.app`` is not defined, the Default application will be use
 // Example:
 gulp.src("./stubFile.html")
 .pipe(open("", {app: "google-chrome", url: "http://localhost:3000"}));
-// A file must be specified as the src when running options.url or gulp will overlook the task.
+// An actual file must be specified as the src when running options.url or gulp-open es.map will overlook the task.
 ```
 
 
