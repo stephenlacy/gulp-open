@@ -1,6 +1,6 @@
 #gulp-open
-[![Build Status](https://travis-ci.org/stevelacy/gulp-open.png?branch=master)](https://travis-ci.org/stevelacy/gulp-bump)
-[![NPM version](https://badge.fury.io/js/gulp-bump.png)](http://badge.fury.io/js/gulp-open)
+[![Build Status](https://travis-ci.org/stevelacy/gulp-open.png?branch=master)](https://travis-ci.org/stevelacy/gulp-open)
+[![NPM version](https://badge.fury.io/js/gulp-open.png)](http://badge.fury.io/js/gulp-open)
 
 ## Information
 
