@@ -1,7 +1,7 @@
 {
   "name": "gulp-open",
   "description": "Open files and URLs with gulp",
-  "version": "0.2.6",
+  "version": "0.2.7",
   "homepage": "http://github.com/stevelacy/gulp-open",
   "repository": {
     "type": "git",
@@ -11,8 +11,8 @@
   "main": "./index.js",
   "dependencies": {
     "open": "~0.0.4",
-    "event-stream": "~3.0.20",
-    "gulp-util": "~2.2.0"
+    "gulp-util": "~2.2.0",
+    "map-stream": "~0.0.4"
   },
   "devDependencies": {
     "mocha": "*",
