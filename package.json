@@ -11,7 +11,7 @@
   "main": "./index.js",
   "dependencies": {
     "open": "0.0.4",
-    "gulp-util": "~2.2.12",
+    "gulp-util": "~2.2.13",
     "map-stream": "~0.1.0"
   },
   "devDependencies": {
