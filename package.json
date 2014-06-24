@@ -28,7 +28,6 @@
     "gulp",
     "open",
     "node-open",
-    "exec-plugin",
     "gulpplugin",
     "gulp-plugin"
   ],
