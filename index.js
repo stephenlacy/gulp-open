@@ -6,7 +6,7 @@ module.exports = function(src, opt) {
 
   return map(function (file, cb){
     if (file.isNull()) return cb(null, file); // pass along
-    if (file.isStream()) return cb(new Error("gulp-open: Streaming not supported")); // pass error if streaming is not supported
+    if (file.isStream()) src = file.path;
     if (!opt) opt = {};
     var cmd = gutil.template(src, {file:file});
     
