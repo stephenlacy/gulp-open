@@ -35,6 +35,4 @@ gulp.task('url', function(){
 });
 
 
-gulp.task('default', function(){
-  gulp.run('simple', 'template', 'open', 'url', 'stream');
-});
+gulp.task('default', ['simple', 'template', 'open', 'url', 'stream']);
