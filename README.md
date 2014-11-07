@@ -77,9 +77,7 @@ gulp.task("url", function(){
 
 // Run the task with gulp
 
-gulp.task("default", function(){
-  gulp.run("open");
-});
+gulp.task("default", ["open"]);
 ```
 ####You can view more examples in the [example folder.](https://github.com/stevelacy/gulp-open/tree/master/examples)
 
