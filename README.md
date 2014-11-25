@@ -29,46 +29,46 @@
 ## Example
 
 ```javascript
-var gulp = require("gulp");
-var open = require("gulp-open");
+var gulp = require('gulp');
+var open = require('gulp-open');
 
 
 
 // Default usage:
 // Open one file with default application
 
-gulp.task("default", function(){
-  gulp.src("./index.html")
-  .pipe(open("<%file.path%>")); 
+gulp.task('default', function(){
+  gulp.src('./index.html')
+  .pipe(open('<%file.path%>')); 
 });
 
 
 // Open all .html files in a folder with a defined application
 
-gulp.task("open", function(){
-  gulp.src("./htdocs/*.html")
-  .pipe(open("<%file.path%>",{app:"google-chrome"}));
+gulp.task('open', function(){
+  gulp.src('./htdocs/*.html')
+  .pipe(open('<%file.path%>',{app:'google-chrome'}));
 });
 
 
 // Simple usage, no options.
 // This will use the default applications
 
-gulp.task("simple", function(){
-  gulp.src("./index.html")
+gulp.task('simple', function(){
+  gulp.src('./index.html')
   .pipe(open());
 });
 
 
 // Open an URL:
 
-gulp.task("url", function(){
+gulp.task('url', function(){
   var options = {
-    url: "http://localhost:3000",
-    app: "firefox"
+    url: 'http://localhost:3000',
+    app: 'firefox'
   };
-  gulp.src("./index.html")
-  .pipe(open("", options));
+  gulp.src('./index.html')
+  .pipe(open(', options));
 });
 // A file must be specified as the src when running options.url or gulp will overlook the task.
 
@@ -77,7 +77,7 @@ gulp.task("url", function(){
 
 // Run the task with gulp
 
-gulp.task("default", ["open"]);
+gulp.task('default', ['open']);
 ```
 ####You can view more examples in the [example folder.](https://github.com/stevelacy/gulp-open/tree/master/examples)
 
@@ -95,9 +95,9 @@ gulp.task("default", ["open"]);
 <%file.path%>
 
 // Example:
-.pipe(open("<%file.path%>"));
+.pipe(open('<%file.path%>'));
 
-.pipe(open("file:// <%= file.path%>", {app:"google-chrome"}));
+.pipe(open('file:// <%= file.path%>', {app:'google-chrome'}));
 
 ```
 
@@ -109,13 +109,13 @@ NOTE: If the ``options.app`` is not defined, the Default application will be use
 
 ```javascript
 
-"google-chrome" // Linux 
-"chrome" // Windows
-"firefox"
+'google-chrome' // Linux 
+'chrome' // Windows
+'firefox'
 
 // Example:
 
-.pipe(open("file://<%file.path%>", {app:"google-chrome"}));
+.pipe(open('file://<%file.path%>', {app:'google-chrome'}));
 
 ```
 ###Options.url
@@ -128,11 +128,11 @@ Firefox: "firefox"
 
 ```javascript
 
-"http://localhost:3000"
+'http://localhost:3000'
 
 // Example:
-gulp.src("./stubFile.html")
-.pipe(open("", {app: "google-chrome", url: "http://localhost:3000"}));
+gulp.src('./stubFile.html')
+.pipe(open(', {app: 'google-chrome', url: 'http://localhost:3000'}));
 // An actual file must be specified as the src when running options.url or gulp-open es.map will overlook the task.
 ```
 
