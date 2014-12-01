@@ -47,7 +47,7 @@ gulp.task('default', function(){
 
 gulp.task('open', function(){
   gulp.src('./htdocs/*.html')
-  .pipe(open('<%file.path%>',{app:'google-chrome'}));
+  .pipe(open('<%file.path%>', {app: 'google-chrome'}));
 });
 
 
@@ -68,7 +68,7 @@ gulp.task('url', function(){
     app: 'firefox'
   };
   gulp.src('./index.html')
-  .pipe(open(', options));
+  .pipe(open('', options));
 });
 // A file must be specified as the src when running options.url or gulp will overlook the task.
 
@@ -97,7 +97,7 @@ gulp.task('default', ['open']);
 // Example:
 .pipe(open('<%file.path%>'));
 
-.pipe(open('file:// <%= file.path%>', {app:'google-chrome'}));
+.pipe(open('file:// <%= file.path%>', {app: 'google-chrome'}));
 
 ```
 
@@ -115,7 +115,7 @@ NOTE: If the ``options.app`` is not defined, the Default application will be use
 
 // Example:
 
-.pipe(open('file://<%file.path%>', {app:'google-chrome'}));
+.pipe(open('file://<%file.path%>', {app: 'google-chrome'}));
 
 ```
 ###Options.url
@@ -132,7 +132,7 @@ Firefox: "firefox"
 
 // Example:
 gulp.src('./stubFile.html')
-.pipe(open(', {app: 'google-chrome', url: 'http://localhost:3000'}));
+.pipe(open('', {app: 'google-chrome', url: 'http://localhost:3000'}));
 // An actual file must be specified as the src when running options.url or gulp-open es.map will overlook the task.
 ```
 
