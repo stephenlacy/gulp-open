@@ -107,11 +107,14 @@ gulp.task('default', ['open']);
 
 NOTE: If the ``options.app`` is not defined, the Default application will be used for the filetype/URL.
 
-```javascript
+| Browser / OS          | OSX                 | Linux               | Windows                        |
+|:--------------------- |:------------------- |:------------------- |:------------------------------ |
+| **Google Chrome**     | 'Google Chrome'     | 'google-chrome'     | 'chrome'                       |
+| **Firefox**           | 'firefox'           | 'firefox'           | 'firefox'                      |
+| **Opera**             | 'opera'             | 'opera'             | 'opera'                        |
+| **Internet Explorer** | *n/a*               | *n/a*               | 'InternetExplorer.Application' |
+| **Safari**            | 'safari'            | *n/a*               | *n/a*                          |
 
-'google-chrome' // Linux 
-'chrome' // Windows
-'firefox'
 
 // Example:
 
