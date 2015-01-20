@@ -5,7 +5,7 @@
 ## Information
 
 <table>
-<tr> 
+<tr>
 <td>Package</td><td>gulp-open</td>
 </tr>
 <tr>
@@ -39,7 +39,7 @@ var open = require('gulp-open');
 
 gulp.task('default', function(){
   gulp.src('./index.html')
-  .pipe(open('<%file.path%>')); 
+  .pipe(open('<%file.path%>'));
 });
 
 
@@ -109,8 +109,9 @@ NOTE: If the ``options.app`` is not defined, the Default application will be use
 
 ```javascript
 
-'google-chrome' // Linux 
+'google-chrome' // Linux
 'chrome' // Windows
+'google chrome' // OSX
 'firefox'
 
 // Example:
@@ -121,7 +122,7 @@ NOTE: If the ``options.app`` is not defined, the Default application will be use
 ###Options.url
 `String, web url`
 
-####Note for windows users: 
+####Note for windows users:
 URLs may not have a default application. If the task is running without opening in a browser try setting the options.app.
 Google Chrome: "chrome"
 Firefox: "firefox"
