@@ -10,7 +10,7 @@
   "author": "Steve Lacy <me@slacy.me> (http://slacy.me/)",
   "main": "./index.js",
   "dependencies": {
-    "gulp-util": "^3.0.1",
+    "gulp-util": "^3.0.2",
     "open": "0.0.5",
     "through2": "^0.6.3"
   },
