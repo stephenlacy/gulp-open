@@ -39,41 +39,38 @@ var open = require('gulp-open');
 
 gulp.task('default', function(){
   gulp.src('./index.html')
-  .pipe(open('<%file.path%>'));
-});
-
-
-// Open all .html files in a folder with a defined application
-
-gulp.task('open', function(){
-  gulp.src('./htdocs/*.html')
-  .pipe(open('<%file.path%>', {app: 'google-chrome'}));
-});
-
-
-// Simple usage, no options.
-// This will use the default applications
-
-gulp.task('simple', function(){
-  gulp.src('./index.html')
   .pipe(open());
 });
 
+// Open all .html files in a folder with a browser
+var browser = os.platform() === 'linux' ? 'google-chrome' : (
+  os.platform() === 'darwin' ? 'google chrome' : (
+  os.platform() === 'win32' ? 'chrome' : 'firefox'));
 
-// Open an URL:
+gulp.task('file-browser', function(){
+  gulp.src('./htdocs/*.html')
+  .pipe(open({app: browser}));
+});
+
+// Simple usage, no options.
+// This will use the url in the default browser
+
+gulp.task('url', function(){
+  gulp.src([])
+  .pipe(open({uri: http://www.google.com}));
+});
+
+
+// Open an URL in a given browser:
 
 gulp.task('url', function(){
   var options = {
-    url: 'http://localhost:3000',
+    uri: 'http://localhost:3000',
     app: 'firefox'
   };
-  gulp.src('./index.html')
-  .pipe(open('', options));
+  gulp.src([])
+  .pipe(open(options));
 });
-// A file must be specified as the src when running options.url or gulp will overlook the task.
-
-
-
 
 // Run the task with gulp
 
@@ -83,24 +80,9 @@ gulp.task('default', ['open']);
 
 
 ##Options
-`Object, {app, url}`
+`Object, {app, uri}`
 
-`.pipe(open(Template, options))`
-
-###Template (Required to use options)
-`String, file.path`
-
-```javascript
-
-<%file.path%>
-
-// Example:
-.pipe(open('<%file.path%>'));
-
-.pipe(open('file:// <%= file.path%>', {app: 'google-chrome'}));
-
-```
-
+`.pipe(open(options))`
 
 ###Options.app
 `String, local application`
@@ -116,30 +98,27 @@ NOTE: If the ``options.app`` is not defined, the Default application will be use
 
 // Example:
 
-.pipe(open('file://<%file.path%>', {app: 'google-chrome'}));
+.pipe(open({uri: 'file:///etc/resolv.conf', app: 'google-chrome'}));
 
 ```
-###Options.url
-`String, web url`
+###Options.uri
+`String, any valid uri (url, file protocol, or full path)`
 
 ####Note for windows users:
 URLs may not have a default application. If the task is running without opening in a browser try setting the options.app.
 Google Chrome: "chrome"
 Firefox: "firefox"
 
+If the uri provided is a file, a sync verification is performed by this plugin to verify that the file exists.
+
 ```javascript
 
 'http://localhost:3000'
 
 // Example:
-gulp.src('./stubFile.html')
-.pipe(open('', {app: 'google-chrome', url: 'http://localhost:3000'}));
-// An actual file must be specified as the src when running options.url or gulp-open es.map will overlook the task.
+gulp.src([])
+.pipe(open({app: 'google-chrome', uri: 'http://localhost:3000'}));
 ```
-
-
-
-
 ## LICENSE
 
 (MIT License)
