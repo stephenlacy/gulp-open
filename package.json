@@ -10,9 +10,10 @@
   "author": "Steve Lacy <me@slacy.me> (http://slacy.me/)",
   "main": "./index.js",
   "dependencies": {
+    "colors": "^1.1.2",
+    "event-stream": "^3.3.1",
     "gulp-util": "^3.0.2",
-    "open": "0.0.5",
-    "through2": "^0.6.3"
+    "open": "0.0.5"
   },
   "devDependencies": {
     "mocha": "*",

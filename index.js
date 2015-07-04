@@ -1,25 +1,104 @@
+var es = require('event-stream');
+var fs = require('fs');
 var open = require('open');
-var through = require('through2');
 var gutil = require('gulp-util');
 
-module.exports = function(src, opt) {
+var log = gutil.log;
+var colors = gutil.colors;
+var PluginError = gutil.PluginError;
 
-  return through.obj(function(file, enc, cb){
-    if (file.isNull()) return cb(null, file); // pass along
-    if (file.isStream()) src = file.path;
-    if (!opt) opt = {};
-    var cmd = gutil.template(src, {file:file});
+var PLUGIN_NAME = 'gulp-open';
 
-    if (!opt.app && !opt.url) {
-      open(file.path);
-      return cb(null, file);
+// The acceptable uri formats for opening
+var ACCEPTABLE_URI_FORMATS = ["/", "file://", "http://", "https://"];
+
+// Main plugin
+var gulpOpen = function(opt) {
+
+  var stream;
+  opt = opt || {};
+
+  // Executes the opening based on a given uri
+  var executeOpening = function() {
+    if (!opt.uri) {
+      stream.emit("error", new PluginError(PLUGIN_NAME, "URI is missing or incorrect! Use the src or the " + 
+        "options to indicate a uri " + ACCEPTABLE_URI_FORMATS));
     }
-    if(opt.url){
-      open(opt.url, opt.app);
-      return cb(null, file);
+
+    // If the uri was not passed either by the stream nor by the options
+    var indexOfIndexOf = _indexOfIndexOf(opt.uri);
+    if (indexOfIndexOf === -1) {
+      stream.emit("error", new PluginError(PLUGIN_NAME, "URI is missing or incorrect! Please use one of " + ACCEPTABLE_URI_FORMATS));
     }
-    // Run normally
-    open(cmd, opt.app);
-    cb(null, file);
-  });
-};
+
+    // If the type is the index value in the range of files
+    var selectedType = indexOfIndexOf <= 1 ? "file" : "url";
+    console.log(indexOfIndexOf);
+
+    // If provided by the user using the options and not the stream, verify if the file exists first
+    if (selectedType === "file" && !opt.uriFromStream) {
+      try {
+        fs.statSync(opt.uri);
+
+      } catch (FileNotFoundError) {
+	 console.log(FileNotFoundError);
+        stream.emit("error", new PluginError(PLUGIN_NAME, "File path " + opt.uri + " not found!"));
+      }
+    }
+
+    // Open the file with the default app in the OS
+    if (!opt.app) {
+      log(colors.blue('Opening the', selectedType, colors.green(opt.uri), 'using the', colors.green('default OS app')));
+      open(opt.uri);
+
+    } else {
+      log(colors.blue('Opening the', selectedType, colors.green(opt.uri), 'using the app', colors.green(opt.app)));
+      open(opt.uri, opt.app);
+    }
+  };
+
+  function done() {
+    // End the stream if it exists
+    if (stream) {
+      stream.emit('end');
+    }
+  }
+
+  // Handles opening the file through the stream
+  var queueFile = function(file) {
+    console.log(file);
+    // Just get the path and inject it to the options to be processed.
+    opt.uri = file.path;
+    opt.uriFromStream = true;
+  };
+
+  // Open the object, whatever that is.
+  var endStream = function() {
+    executeOpening();
+  };
+
+  // copied from gulp-karma
+  stream = es.through(queueFile, endStream);
+
+  return stream;
+}
+
+/**
+ * In addition to the regular path
+ * > _followsFormat("github.com")   > _followsFormat("http://github.com")
+ * false                            true
+ * > _followsFormat("file://dsdsd") > _followsFormat("/usr/bin") 
+ * true                             true
+ *
+ * @return The index of which type of the acceptable types the uri is from.
+ */
+function _indexOfIndexOf(uri) {
+  return ACCEPTABLE_URI_FORMATS.map(function(formatPrefix) {
+    return uri.indexOf(formatPrefix) === 0;
+
+  }).reduce(function(acc, value, index) {
+    return value ? index : acc;
+  }, false);
+}
+
+module.exports = gulpOpen;
