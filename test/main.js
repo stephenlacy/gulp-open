@@ -1,6 +1,7 @@
+'use strict';
+
 var gulpopen = require('../');
-var should = require('should');
-var os = require("os");
+var os = require('os');
 require('mocha');
 
 describe('gulp-open', function() {
@@ -11,25 +12,25 @@ describe('gulp-open', function() {
  
   describe('opening files', function() {
     it('should open a stream of files with the default application', function(done) {
-      gulpopen("<%= file.path%>", done());
+      gulpopen('<%= file.path%>', {}, done());
     });
 
     it('should open a stream of files with a defined application', function(done) {
-      gulpopen("<%= file.path%>", {app: browser}, done());
+      gulpopen('<%= file.path%>', {app: browser}, done());
     });
 
     it('should open a stream of files with a browser using the options', function(done) {
-      gulpopen({}, {uri: __dirname + "/../package.json", app: browser}, done());
+      gulpopen({}, {uri: __dirname + '/../package.json', app: browser}, done());
     });
   });
 
   describe('opening urls', function() {
     it('should open a website in a browser using the options', function(done) {
-      gulpopen({}, {uri:"http://localhost:3000"}, done());
+      gulpopen({}, {uri:'http://localhost:3000'}, done());
     });
 
     it('should open a website in a browser using chrome or firefox', function(done) {
-     gulpopen({}, {uri:"https://www.google.com", app: browser}, done());
+     gulpopen({}, {uri:'https://www.google.com', app: browser}, done());
     });
   });
 });

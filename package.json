@@ -1,7 +1,7 @@
 {
   "name": "gulp-open",
   "description": "Open files and URLs with gulp",
-  "version": "1.0.0",
+  "version": "0.3.2",
   "homepage": "http://github.com/stevelacy/gulp-open",
   "repository": {
     "type": "git",
@@ -11,16 +11,19 @@
   "main": "./index.js",
   "dependencies": {
     "colors": "^1.1.2",
-    "event-stream": "^3.3.1",
     "gulp-util": "^3.0.2",
-    "open": "0.0.5"
+    "open": "0.0.5",
+    "through2": "^0.6.3"
   },
   "devDependencies": {
+    "jshint": "latest",
     "mocha": "*",
     "should": "*"
   },
   "scripts": {
-    "test": "mocha --reporter spec"
+    "pretest": "if [ ! -f $PWD/.jshintrc ]; then wget https://raw.githubusercontent.com/stevelacy/gulp-stylus/master/.jshintrc; fi && jshint *.js test/*.js",
+    "test": "mocha --reporter spec",
+    "posttest": "rm .jshintrc"
   },
   "engines": {
     "node": ">= 0.9.0"

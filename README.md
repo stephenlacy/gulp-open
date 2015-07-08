@@ -47,19 +47,22 @@ var browser = os.platform() === 'linux' ? 'google-chrome' : (
   os.platform() === 'darwin' ? 'google chrome' : (
   os.platform() === 'win32' ? 'chrome' : 'firefox'));
 
+gulp.src("./package.json").pipe(open({}, {app: chrome}));
+
 gulp.task('file-browser', function(){
   gulp.src('./htdocs/*.html')
-  .pipe(open({app: browser}));
+  .pipe(open({}, {app: browser}));
 });
 
 // Simple usage, no options.
 // This will use the url in the default browser
+// Note that we need to provide "__filename" to `src` and
+// an empty object to open.
 
 gulp.task('url', function(){
-  gulp.src([])
-  .pipe(open({uri: http://www.google.com}));
+  gulp.src(__filename)
+  .pipe(open({}, {uri: http://www.google.com}));
 });
-
 
 // Open an URL in a given browser:
 
@@ -68,8 +71,8 @@ gulp.task('url', function(){
     uri: 'http://localhost:3000',
     app: 'firefox'
   };
-  gulp.src([])
-  .pipe(open(options));
+  gulp.src(__filename)
+  .pipe(open({}, options));
 });
 
 // Run the task with gulp
