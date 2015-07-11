@@ -21,9 +21,8 @@
     "should": "*"
   },
   "scripts": {
-    "pretest": "if [ ! -f $PWD/.jshintrc ]; then wget https://raw.githubusercontent.com/stevelacy/gulp-stylus/master/.jshintrc; fi && jshint *.js test/*.js",
-    "test": "mocha --reporter spec",
-    "posttest": "rm .jshintrc"
+    "pretest": "jshint *.js test/*.js",
+    "test": "mocha --reporter spec"
   },
   "engines": {
     "node": ">= 0.9.0"

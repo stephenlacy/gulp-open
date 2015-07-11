@@ -6,7 +6,6 @@ var gutil = require('gulp-util');
 
 var log = gutil.log;
 var colors = gutil.colors;
-var PluginError = gutil.PluginError;
 
 var PLUGIN_NAME = 'gulp-open';
 
@@ -16,16 +15,16 @@ var ACCEPTABLE_URI_FORMATS = ['/', 'file://', 'http://', 'https://'];
 module.exports = function(src, opt) {
 
   opt = opt || {};
-  var plugInErrors = [];
+  var initError = null;
   if (!src && !opt.uri) {
-    plugInErrors.push(new PluginError(PLUGIN_NAME, 'URI is missing or incorrect! Use the ' +
-      'src or the options to indicate a uri ' + ACCEPTABLE_URI_FORMATS));
+    initError = 'URI is missing or incorrect! Use the src or the options to indicate a uri' +
+      ACCEPTABLE_URI_FORMATS;
   }
 
   return through.obj(function(file, enc, cb) {
 
-    if (plugInErrors.length > 0) {
-      cb(null, plugInErrors[0]);
+    if (initError) {
+      return cb(new gutil.PluginError(PLUGIN_NAME, initError));
     }
     if (file.isNull()) {
       return cb(null, file); // pass along
@@ -36,16 +35,14 @@ module.exports = function(src, opt) {
 
     var selectedType = 'none';
     // If the uri was not passed either by the stream nor by the options
-    if (plugInErrors.length === 0) {
-      var indexOfAnyFormat = _getIndexesOfAcceptableFormats(opt.uri);
-      if (indexOfAnyFormat === -1) {
-        plugInErrors.push(new PluginError(PLUGIN_NAME, 'URI is missing or incorrect! Please ' +
-          'use one of ' + ACCEPTABLE_URI_FORMATS));
+    var indexOfAnyFormat = _getIndexesOfAcceptableFormats(opt.uri);
+    if (indexOfAnyFormat === -1) {
+      return cb(new gutil.PluginError(PLUGIN_NAME, 'URI is missing or incorrect! Please ' +
+        'use one of ' + ACCEPTABLE_URI_FORMATS));
 
-      } else {
-        // If the type is the index value in the range of files
-        selectedType = indexOfAnyFormat <= 1 ? 'file' : 'url';
-      }
+    } else {
+      // If the type is the index value in the range of files
+      selectedType = indexOfAnyFormat <= 1 ? 'file' : 'url';
     }
 
     if (opt.app) {
