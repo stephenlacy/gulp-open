@@ -16,7 +16,7 @@
     "through2": "^0.6.3"
   },
   "devDependencies": {
-    "jshint": "latest",
+    "jshint": "*",
     "mocha": "*",
     "should": "*"
   },
@@ -34,10 +34,5 @@
     "gulpplugin",
     "gulp-plugin"
   ],
-  "licenses": [
-    {
-      "type": "MIT",
-      "url": "http://github.com/stevelacy/gulp-open/raw/master/LICENSE"
-    }
-  ]
+  "license": "MIT"
 }
