@@ -33,7 +33,7 @@
 
 var os = require('os');
 var gulp = require('gulp');
-var open = require('../');
+var open = require('gulp-open');
 
 
 // Default usage:
@@ -97,7 +97,7 @@ NOTE: If the ``options.app`` is not defined, the Default application will be use
 
 'google-chrome' // Linux
 'chrome' // Windows
-'google chrome' // OSX
+'google chrome' or 'Google Chrome' // OSX
 'firefox'
 
 // Example:
@@ -112,8 +112,6 @@ NOTE: If the ``options.app`` is not defined, the Default application will be use
 URLs may not have a default application. If the task is running without opening in a browser try setting the options.app.
 Google Chrome: "chrome"
 Firefox: "firefox"
-
-If the uri provided is a file, a sync verification is performed by this plugin to verify that the file exists.
 
 ```javascript
 
