@@ -29,55 +29,56 @@
 ## Example
 
 ```javascript
-var gulp = require('gulp');
-var open = require('gulp-open');
+'use strict';
 
+var os = require('os');
+var gulp = require('gulp');
+var open = require('../');
 
 
 // Default usage:
 // Open one file with default application
 
-gulp.task('default', function(){
+gulp.task('open', function(){
   gulp.src('./index.html')
   .pipe(open());
 });
 
-// Open all .html files in a folder with a browser
+
 var browser = os.platform() === 'linux' ? 'google-chrome' : (
   os.platform() === 'darwin' ? 'google chrome' : (
   os.platform() === 'win32' ? 'chrome' : 'firefox'));
 
-gulp.src("./package.json").pipe(open({}, {app: chrome}));
+gulp.src('./package.json').pipe(open({app: 'chrome'}));
 
-gulp.task('file-browser', function(){
-  gulp.src('./htdocs/*.html')
-  .pipe(open({}, {app: browser}));
+gulp.task('browser', function(){
+  gulp.src('./second.html')
+  .pipe(open({app: browser}));
 });
 
 // Simple usage, no options.
-// This will use the url in the default browser
-// Note that we need to provide "__filename" to `src` and
-// an empty object to open.
+// This will use the uri in the default browser
 
-gulp.task('url', function(){
+gulp.task('uri', function(){
   gulp.src(__filename)
-  .pipe(open({}, {uri: http://www.google.com}));
+  .pipe(open({uri: 'http://www.google.com'}));
 });
 
 // Open an URL in a given browser:
 
-gulp.task('url', function(){
+gulp.task('app', function(){
   var options = {
-    uri: 'http://localhost:3000',
+    uri: 'localhost:3000',
     app: 'firefox'
   };
   gulp.src(__filename)
-  .pipe(open({}, options));
+  .pipe(open(options));
 });
 
 // Run the task with gulp
 
-gulp.task('default', ['open']);
+gulp.task('default', ['open', 'uri', 'app', 'browser']);
+
 ```
 ####You can view more examples in the [example folder.](https://github.com/stevelacy/gulp-open/tree/master/examples)
 
@@ -119,7 +120,7 @@ If the uri provided is a file, a sync verification is performed by this plugin t
 'http://localhost:3000'
 
 // Example:
-gulp.src([])
+gulp.src('')
 .pipe(open({app: 'google-chrome', uri: 'http://localhost:3000'}));
 ```
 ## LICENSE

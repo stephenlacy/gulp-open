@@ -1,38 +1,47 @@
+'use strict';
+
+var os = require('os');
 var gulp = require('gulp');
 var open = require('../');
 
-gulp.task('simple', function(){
+
+// Default usage:
+// Open one file with default application
+
+gulp.task('open', function(){
   gulp.src('./index.html')
   .pipe(open());
 });
 
-gulp.task('stream', function(){
-  gulp.src('./index.html', {buffer: false})
-  .pipe(open());
-});
 
-gulp.task('template', function(){
+var browser = os.platform() === 'linux' ? 'google-chrome' : (
+  os.platform() === 'darwin' ? 'google chrome' : (
+  os.platform() === 'win32' ? 'chrome' : 'firefox'));
+
+gulp.task('browser', function(){
   gulp.src('./second.html')
-  .pipe(open('<%file.path%>'));
+  .pipe(open({app: browser}));
 });
 
-gulp.task('open', function(){
-  var options = {
-    app: 'google-chrome'
-  };
-  gulp.src('./*.html')
-  .pipe(open('file://<%= file.path %>', options));
+// Simple usage, no options.
+// This will use the uri in the default browser
+
+gulp.task('uri', function(){
+  gulp.src('')
+  .pipe(open({uri: 'http://www.google.com'}));
 });
 
+// Open an URL in a given browser:
 
-gulp.task('url', function(){
+gulp.task('app', function(){
   var options = {
-    url: 'http://localhost:3000',
+    uri: 'localhost:3000',
     app: 'firefox'
   };
-  gulp.src('./index.html') // An actual file must be specified or gulp will overlook the task.
-  .pipe(open('', options));
+  gulp.src(__filename)
+  .pipe(open(options));
 });
 
+// Run the task with gulp
 
-gulp.task('default', ['simple', 'template', 'open', 'url', 'stream']);
+gulp.task('default', ['open', 'uri', 'app', 'browser']);
