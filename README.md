@@ -107,7 +107,7 @@ NOTE: If the ``options.app`` is not defined, the Default application will be use
 ```
 
 ####Note for OSX-Users:
-If you have Parallels Desktop installed with the same browser, you might have to use an absolute path:
+You might have to use an absolute path.
 
 ```javascript
 var options = {
