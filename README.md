@@ -105,6 +105,19 @@ NOTE: If the ``options.app`` is not defined, the Default application will be use
 .pipe(open({uri: 'file:///etc/resolv.conf', app: 'google-chrome'}));
 
 ```
+
+####Note for OSX-Users:
+You might have to use an absolute path.
+
+```javascript
+var options = {
+  uri: 'localhost:3000',
+  app: '/Applications/Google\ Chrome.app'
+};
+gulp.src('./')
+  .pipe( open( options ) );
+```
+
 ###Options.uri
 `String, any valid uri (url, file protocol, or full path)`
 
