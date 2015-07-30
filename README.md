@@ -110,12 +110,12 @@ NOTE: If the ``options.app`` is not defined, the Default application will be use
 If you have Parallels Desktop installed with the same browser, you might have to use an absolute path:
 
 ```javascript
-var browserOptions = {
+var options = {
   uri: 'localhost:3000',
   app: '/Applications/Google\ Chrome.app'
 };
 gulp.src('./')
-  .pipe( open( browserOptions ) );
+  .pipe( open( options ) );
 ```
 
 ###Options.uri
