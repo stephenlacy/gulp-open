@@ -115,7 +115,7 @@ var options = {
   app: '/Applications/Google\ Chrome.app'
 };
 gulp.src('./')
-  .pipe( open( options ) );
+  .pipe(open(options));
 ```
 
 ###Options.uri
