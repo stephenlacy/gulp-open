@@ -24,7 +24,7 @@
 
 ## Usage
 #### Install
-    npm install gulp-open --save
+    npm install gulp-open --save-dev
 
 ## Example
 
