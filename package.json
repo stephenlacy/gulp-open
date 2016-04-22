@@ -13,12 +13,12 @@
     "colors": "^1.1.2",
     "gulp-util": "^3.0.2",
     "open": "0.0.5",
-    "through2": "^0.6.3"
+    "through2": "^2.0.1"
   },
   "devDependencies": {
-    "jshint": "*",
-    "mocha": "*",
-    "should": "*"
+    "jshint": "^2.9.2",
+    "mocha": "^2.4.5",
+    "should": "^8.3.1"
   },
   "scripts": {
     "pretest": "jshint *.js test/*.js",
