@@ -9,30 +9,33 @@ var colors = gutil.colors;
 var PLUGIN_NAME = 'gulp-open';
 
 module.exports = function(opts) {
-
   opts = opts || {};
 
   return through.obj(function(file, enc, cb) {
+    var uri = opts.uri;
 
-    if (file.isNull() && !opts.uri) {
-      return cb(new gutil.PluginError(PLUGIN_NAME, 'URI is missing or incorrect'));
+    if (file.isNull() && !uri) {
+      return cb(new gutil.PluginError(PLUGIN_NAME,
+        'URI is missing or incorrect'));
     }
 
-    if (file.path && !opts.uri)  {
-      opts.uri = file.path;
+    if (file.path && !uri)  {
+      uri = file.path;
     }
 
     if (opts.app) {
-      gutil.log(colors.blue('Opening', colors.green(opts.uri), 'using the app',
+      gutil.log(colors.blue('Opening', colors.green(uri), 'using the app',
         colors.green(opts.app)));
       // Open with the given app
-      return open(opts.uri, opts.app);
+      open(uri, opts.app);
+      return cb(null, file);
 
     }
-    gutil.log(colors.blue('Opening', colors.green(opts.uri), 'using the',
+    gutil.log(colors.blue('Opening', colors.green(uri), 'using the',
       colors.green('default OS app')));
     // Open with the default app defined by the os
-    open(opts.uri);
+    open(uri);
+    return cb(null, file);
 
   });
 };
