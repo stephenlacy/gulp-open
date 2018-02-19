@@ -1,6 +1,6 @@
 'use strict';
 
-var open = require('open');
+var open = require('opn');
 var through = require('through2');
 var log = require('plugin-log');
 
