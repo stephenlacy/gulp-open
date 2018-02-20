@@ -1,4 +1,7 @@
-#gulp-open
+# gulp-open
+
+> Version 3.0.0+ removes support for node < v4
+
 [![Build Status](https://travis-ci.org/stevelacy/gulp-open.png?branch=master)](https://travis-ci.org/stevelacy/gulp-open)
 [![NPM version](https://badge.fury.io/js/gulp-open.png)](http://badge.fury.io/js/gulp-open)
 
@@ -23,6 +26,7 @@
 </table>
 
 ## Usage
+
 #### Install
     npm install gulp-open --save
 
@@ -80,15 +84,15 @@ gulp.task('app', function(){
 gulp.task('default', ['open', 'uri', 'app', 'browser']);
 
 ```
-####You can view more examples in the [example folder.](https://github.com/stevelacy/gulp-open/tree/master/examples)
+#### You can view more examples in the [example folder.](https://github.com/stevelacy/gulp-open/tree/master/examples)
 
 
-##Options
+## Options
 `Object, {app, uri}`
 
 `.pipe(open(options))`
 
-###Options.app
+### Options.app
 `String, local application`
 
 NOTE: If the ``options.app`` is not defined, the Default application will be used for the filetype/URL.
@@ -106,7 +110,7 @@ NOTE: If the ``options.app`` is not defined, the Default application will be use
 
 ```
 
-####Note for OSX-Users:
+#### Note for OSX-Users:
 You might have to use an absolute path.
 
 ```javascript
@@ -118,10 +122,10 @@ gulp.src('./')
   .pipe(open(options));
 ```
 
-###Options.uri
+### Options.uri
 `String, any valid uri (url, file protocol, or full path)`
 
-####Note for windows users:
+#### Note for windows users:
 URLs may not have a default application. If the task is running without opening in a browser try setting the options.app.
 Google Chrome: "chrome"
 Firefox: "firefox"
