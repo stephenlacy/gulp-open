@@ -18,9 +18,9 @@ var browser = os.platform() === 'linux' ? 'google-chrome' : (
   os.platform() === 'darwin' ? 'google chrome' : (
   os.platform() === 'win32' ? 'chrome' : 'firefox'));
 
-gulp.task('browser', function(cb){
+gulp.task('browser', function(){
   gulp.src('./*.html')
-  .pipe(open({app: browser}, cb));
+  .pipe(open({app: browser}));
 });
 
 // Simple usage, no options.
