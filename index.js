@@ -20,7 +20,7 @@ module.exports = function(opts) {
       log(colors.blue('Opening', colors.green(uri), 'using the app',
         colors.green(opts.app)));
       // Open with the given app
-      open(uri, opts.app);
+      open(uri, {app: opts.app, wait: false});
       return cb(null, file);
 
     }
