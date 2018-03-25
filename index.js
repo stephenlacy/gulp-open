@@ -27,7 +27,7 @@ module.exports = function(opts) {
     log(colors.blue('Opening', colors.green(uri), 'using the',
       colors.green('default OS app')));
     // Open with the default app defined by the os
-    open(uri);
+    open(uri, {wait: false});
     return cb(null, file);
 
   });
