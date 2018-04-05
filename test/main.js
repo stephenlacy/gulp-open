@@ -8,8 +8,8 @@ describe('gulp-open', function() {
 
   const browser = os.platform() === 'linux' ? 'google-chrome' : (
     os.platform() === 'darwin' ? 'google chrome' : (
-    os.platform() === 'win32' ? 'chrome' : 'firefox'));
- 
+      os.platform() === 'win32' ? 'chrome' : 'firefox'));
+
   describe('opening files', function() {
     it('should open a stream of files with the default application', function(done) {
       gulpopen('<%= file.path%>', {}, done());
@@ -26,11 +26,11 @@ describe('gulp-open', function() {
 
   describe('opening urls', function() {
     it('should open a website in a browser using the options', function(done) {
-      gulpopen({}, {uri:'http://localhost:3000'}, done());
+      gulpopen({}, {uri: 'http://localhost:3000'}, done());
     });
 
     it('should open a website in a browser using chrome or firefox', function(done) {
-     gulpopen({}, {uri:'https://www.google.com', app: browser}, done());
+      gulpopen({}, {uri: 'https://www.google.com', app: browser}, done());
     });
   });
 });

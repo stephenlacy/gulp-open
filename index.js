@@ -12,7 +12,7 @@ module.exports = function(opts) {
   return through.obj(function(file, enc, cb) {
     let uri = opts.uri;
 
-    if (file.path && !uri)  {
+    if (file.path && !uri) {
       uri = file.path;
     }
 
