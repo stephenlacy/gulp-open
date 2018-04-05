@@ -10,7 +10,6 @@
   "author": "Steve Lacy <me@slacy.me> (http://slacy.me/)",
   "main": "./index.js",
   "dependencies": {
-    "colors": "^1.1.2",
     "opn": "5.2.0",
     "plugin-log": "^0.1.0",
     "through2": "^2.0.1"
