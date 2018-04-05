@@ -1,16 +1,16 @@
 'use strict';
 
-var open = require('opn');
-var through = require('through2');
-var log = require('plugin-log');
+const open = require('opn');
+const through = require('through2');
+const log = require('plugin-log');
 
-var colors = log.colors;
+const colors = log.colors;
 
 module.exports = function(opts) {
   opts = opts || {};
 
   return through.obj(function(file, enc, cb) {
-    var uri = opts.uri;
+    let uri = opts.uri;
 
     if (file.path && !uri)  {
       uri = file.path;

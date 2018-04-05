@@ -1,12 +1,12 @@
 'use strict';
 
-var gulpopen = require('../');
-var os = require('os');
+const gulpopen = require('../');
+const os = require('os');
 require('mocha');
 
 describe('gulp-open', function() {
 
-  var browser = os.platform() === 'linux' ? 'google-chrome' : (
+  const browser = os.platform() === 'linux' ? 'google-chrome' : (
     os.platform() === 'darwin' ? 'google chrome' : (
     os.platform() === 'win32' ? 'chrome' : 'firefox'));
  

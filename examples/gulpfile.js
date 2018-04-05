@@ -1,8 +1,8 @@
 'use strict';
 
-var os = require('os');
-var gulp = require('gulp');
-var open = require('../');
+const os = require('os');
+const gulp = require('gulp');
+const open = require('../');
 
 
 // Default usage:
@@ -14,7 +14,7 @@ gulp.task('open', function(){
 });
 
 
-var browser = os.platform() === 'linux' ? 'google-chrome' : (
+const browser = os.platform() === 'linux' ? 'google-chrome' : (
   os.platform() === 'darwin' ? 'google chrome' : (
   os.platform() === 'win32' ? 'chrome' : 'firefox'));
 
@@ -34,7 +34,7 @@ gulp.task('uri', function(){
 // Open an URL in a given browser:
 
 gulp.task('app', function(){
-  var options = {
+  const options = {
     uri: 'localhost:3000',
     app: 'firefox'
   };
