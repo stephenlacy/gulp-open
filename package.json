@@ -20,7 +20,7 @@
     "should": "^13.2.1"
   },
   "scripts": {
-    "pretest": "jshint *.js test/*.js",
+    "pretest": "jshint index.js test",
     "test": "mocha --reporter spec"
   },
   "engines": {
