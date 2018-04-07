@@ -2,7 +2,6 @@
 
 const gulpopen = require('../');
 const os = require('os');
-require('mocha');
 
 describe('gulp-open', function() {
 
